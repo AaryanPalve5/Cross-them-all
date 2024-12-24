@@ -130,5 +130,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'ArrowDown') movePlayer(0, 1);
         if (e.key === 'ArrowLeft') movePlayer(-1, 0);
         if (e.key === 'ArrowRight') movePlayer(1, 0);
+        if (e.key === 'q') movePlayer(-1, -1); // Diagonal: Up-left
+        if (e.key === 'e') movePlayer(1, -1);  // Diagonal: Up-right
+        if (e.key === 'z') movePlayer(-1, 1);  // Diagonal: Down-left
+        if (e.key === 'c') movePlayer(1, 1);   // Diagonal: Down-right
     });
+    
 });
