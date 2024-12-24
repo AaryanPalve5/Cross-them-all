@@ -13,11 +13,16 @@
 
     <div id="maze"></div>
     <div id="controls">
+        <button class="up-left" onclick="movePlayer(-1, -1)">↖️</button>
         <button class="up" onclick="movePlayer(0, -1)">⬆️</button>
+        <button class="up-right" onclick="movePlayer(1, -1)">↗️</button>
         <button class="left" onclick="movePlayer(-1, 0)">⬅️</button>
         <button class="right" onclick="movePlayer(1, 0)">➡️</button>
+        <button class="down-left" onclick="movePlayer(-1, 1)">↙️</button>
         <button class="down" onclick="movePlayer(0, 1)">⬇️</button>
+        <button class="down-right" onclick="movePlayer(1, 1)">↘️</button>
     </div>
+    
     <div id="score">Moves: 0</div>
     <div id="gameMessage"></div>
     <div id="shortestPathDisplay"></div>
