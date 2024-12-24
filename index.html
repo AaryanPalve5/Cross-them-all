@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mAIze</title>
+    <link rel="icon" href="asterisk.png" type="image/png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1 >Cross them all</h1>
+    <button id="startBtn">🎮 Start Game</button>
+
+    <div id="maze"></div>
+    <div id="controls">
+        <button class="up" onclick="movePlayer(0, -1)">⬆️</button>
+        <button class="left" onclick="movePlayer(-1, 0)">⬅️</button>
+        <button class="right" onclick="movePlayer(1, 0)">➡️</button>
+        <button class="down" onclick="movePlayer(0, 1)">⬇️</button>
+    </div>
+    <div id="score">Moves: 0</div>
+    <div id="gameMessage"></div>
+    <div id="shortestPathDisplay"></div>
+    <script src="script.js"></script>
+</body>
+</html>
