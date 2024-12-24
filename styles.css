@@ -1,0 +1,113 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+button:active {
+    transform: scale(0.98); /* Slightly shrink button when clicked */
+}
+
+#controls button {
+    width: 50px; /* Slightly larger buttons */
+    height: 50px;
+    font-size: 1.5rem;
+    margin: 10px;
+}
+
+
+#maze {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    gap: 1px;
+    margin: 20px;
+    width: 90vw;  /* Responsive width */
+    height: 90vw; /* Maintain aspect ratio */
+    max-width: 600px; /* Maximum width for larger screens */
+    max-height: 600px; /* Maximum height for larger screens */
+    overflow: hidden;
+}
+
+.cell {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+}
+
+.cell.obstacle {
+    background-color: #000;
+}
+
+.cell.start {
+    background-color: #0f0;
+}
+
+.cell.end {
+    background-color: #f00;
+}
+
+.cell.player {
+    background-color: #00f;
+}
+
+.cell.visited {
+    background-color: #ccf;
+}
+
+.cell.best-path {
+    background-color: #ff0;
+}
+
+#controls {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 10px;
+}
+
+
+
+#score, #gameMessage, #shortestPathDisplay {
+    font-size: 1rem;
+    margin: 10px;
+}
+
+
+
+#startBtn{
+
+    font-size: 1.5rem; /* Keep the original font size */
+    margin: 20px 20px;
+    padding: 20px 20px;
+    cursor: pointer;
+    background-color: #007bff; /* Primary color */
+    color: #fff; /* Text color */
+    border: none;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
+
+    font-family:Verdana, Geneva, Tahoma, sans-serif ;
+
+}
+
+
+h1 {
+    font-size: 3rem; /* Adjust the font size */
+    color: #007bff; /* Primary color or any color that fits the theme */
+    text-align: center; /* Center the title */
+    margin: 20px 0; /* Space above and below the title */
+    font-family: 'Verdana', sans-serif; /* Use the same font as your buttons */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for better readability */
+}
