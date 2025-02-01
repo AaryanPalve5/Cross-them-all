@@ -161,6 +161,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function gameOver(message) {
         gameMessage.textContent = message;
         clearInterval(timer); // Stop the timer
+        alert(message + " Try again!");  // Or a more styled alert if you prefer
+        startBtn.click();
     }
 
     startBtn.addEventListener('click', startGame);
