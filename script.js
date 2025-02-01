@@ -10,9 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let moveCount = 0;
     let visitedCells = 0;
     const totalCells = mazeSize * mazeSize - 14; // Subtract obstacles
+    let timer;
+    let timeLeft;
 
     function initMaze() {
-        mazeContainer.innerHTML = '';
+        mazeContainer.innerHTML = ''; // Clear the maze
         gameMessage.textContent = '';
         shortestPathDisplay.textContent = '';
         maze.length = 0;
@@ -20,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         visitedCells = 0;
         updateScore();
 
+        // Create the maze cells and populate the maze array:
         for (let y = 0; y < mazeSize; y++) {
             maze[y] = [];
             for (let x = 0; x < mazeSize; x++) {
@@ -30,12 +33,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
+        generateMaze(); // NOW generate the maze, after the cells are created
+
         maze[0][0].classList.add('start');
         maze[mazeSize - 1][mazeSize - 1].classList.add('end');
         playerPosition = { x: 0, y: 0 };
-        updatePlayerPosition();
-
-        generateMaze();
+        updatePlayerPosition(); 
     }
 
     function generateMaze() {
@@ -61,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (nx >= 0 && nx < mazeSize && ny >= 0 && ny < mazeSize && !visited[ny][nx]) {
                     visited[ny][nx] = true;
-                    maze[my][mx].classList.remove('obstacle');
+                    maze[mx][my].classList.remove('obstacle');
                     maze[ny][nx].classList.remove('obstacle');
                     stack.push({ x: nx, y: ny });
                     carvePath(nx, ny);
@@ -90,7 +93,6 @@ document.addEventListener('DOMContentLoaded', () => {
             currentCell.classList.add('visited');
             visitedCells++;
         }
-
         currentCell.classList.add('player');
     }
 
@@ -108,9 +110,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (playerPosition.x === mazeSize - 1 && playerPosition.y === mazeSize - 1) {
                     if (visitedCells === totalCells) {
-                        gameMessage.textContent = 'Congratulations! You visited all cells and won!';
+                        gameOver("Congratulations! You visited all cells and won!");
                     } else {
-                        gameMessage.textContent = 'YOU LOST! You didn\'t visit all cells.';
+                        gameOver("YOU LOST! You didn\'t visit all cells.");
                     }
                 }
             } else {
@@ -123,7 +125,45 @@ document.addEventListener('DOMContentLoaded', () => {
         scoreDisplay.textContent = `Moves: ${moveCount}`;
     }
 
-    startBtn.addEventListener('click', initMaze);
+    function startGame() {
+        initMaze();
+
+        timeLeft = 60; // 1 minute in seconds
+        updateTimerDisplay();
+        gameMessage.textContent = ""; // Clear any previous messages
+
+        timer = setInterval(() => {
+            timeLeft--;
+            updateTimerDisplay();
+
+            if (timeLeft < 0) {
+                clearInterval(timer);
+                gameOver("Time's up! You lost!");
+            } else if (playerPosition.x === mazeSize - 1 && playerPosition.y === mazeSize - 1 && visitedCells === totalCells) {
+                clearInterval(timer);
+                gameOver("Congratulations! You visited all cells and won!");
+            } else if (playerPosition.x === mazeSize - 1 && playerPosition.y === mazeSize - 1 && visitedCells < totalCells){
+                clearInterval(timer);
+                gameOver("YOU LOST! You didn\'t visit all cells.");
+            }
+        }, 1000);
+    }
+
+    function updateTimerDisplay() {
+        const timerDisplay = document.getElementById('timer'); 
+        if (timerDisplay) {
+            timerDisplay.textContent = `Time: ${timeLeft}`;
+        } else {
+            console.error("Timer display element not found!");
+        }
+    }
+
+    function gameOver(message) {
+        gameMessage.textContent = message;
+        clearInterval(timer); // Stop the timer
+    }
+
+    startBtn.addEventListener('click', startGame);
 
     document.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowUp') movePlayer(0, -1);
@@ -135,5 +175,4 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'z') movePlayer(-1, 1);  // Diagonal: Down-left
         if (e.key === 'c') movePlayer(1, 1);   // Diagonal: Down-right
     });
-    
 });
