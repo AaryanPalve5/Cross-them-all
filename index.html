@@ -4,28 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cross them all</title>
-    <link rel="icon" href="asterisk.png" type="image/png">
-    <link rel="stylesheet" href="styles.css">
-</head>
+    <link rel="stylesheet" href="styles.css">  </head>
 <body>
-    <h1 >Cross them all</h1>
+    <h1>Cross them all</h1>
     <button id="startBtn">🎮 Start Game</button>
 
     <div id="maze"></div>
     <div id="controls">
-        <button class="up-left" onclick="movePlayer(-1, -1)">↖️</button>
-        <button class="up" onclick="movePlayer(0, -1)">⬆️</button>
-        <button class="up-right" onclick="movePlayer(1, -1)">↗️</button>
-        <button class="left" onclick="movePlayer(-1, 0)">⬅️</button>
-        <button class="right" onclick="movePlayer(1, 0)">➡️</button>
-        <button class="down-left" onclick="movePlayer(-1, 1)">↙️</button>
-        <button class="down" onclick="movePlayer(0, 1)">⬇️</button>
-        <button class="down-right" onclick="movePlayer(1, 1)">↘️</button>
+        <button onclick="movePlayer(-1, -1)">↖️</button>
+        <button onclick="movePlayer(0, -1)">⬆️</button>
+        <button onclick="movePlayer(1, -1)">↗️</button>
+        <button onclick="movePlayer(-1, 0)">⬅️</button>
+        <button onclick="movePlayer(1, 0)">➡️</button>
+        <button onclick="movePlayer(-1, 1)">↙️</button>
+        <button onclick="movePlayer(0, 1)">⬇️</button>
+        <button onclick="movePlayer(1, 1)">↘️</button>
     </div>
     
+    <div id="timer">Time: 60</div> 
     <div id="score">Moves: 0</div>
     <div id="gameMessage"></div>
     <div id="shortestPathDisplay"></div>
+
     <script src="script.js"></script>
 </body>
 </html>
